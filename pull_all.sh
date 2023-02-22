@@ -1,10 +1,16 @@
-cd littleshi.cn; git pull wuli master; git push; cd ../;
-cd user-notes/; git pull wuli master; git push; cd ../;
-cd PhysWiki; git pull wuli master; git push; cd ../;
-cd PhysWiki-backup; git pull wuli master; git push; cd ../;
-cd PhysWikiScan; git pull; cd ../; git push;
+#! /usr/bin/bash
+# pull all subdirectories from default remote
 
-cd Notes; git pull; cd ../;
-cd Private; git pull; cd ../;
-cd SLISC0; git pull; cd ../;
-cd FEDVR-TDSE; git pull; cd ../;
+for repo in */ ; do
+  repo=${repo%/}
+  if ! [ -d "$repo/.git" ]; then
+    continue;
+  fi
+
+  printf "\n\n\n===============================\n"
+  echo "$repo"
+  printf "===============================\n\n\n"
+  cd $repo &&
+  git pull &&
+  cd - > /dev/null
+done
