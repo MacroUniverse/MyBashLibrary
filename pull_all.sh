@@ -7,9 +7,9 @@ for repo in */ ; do
     continue;
   fi
 
-  printf "\n\n\n===============================\n"
+  printf "\n\n===============================\n"
   echo "$repo"
-  printf "===============================\n\n\n"
+  printf "===============================\n\n"
   cd $repo &&
   git pull &&
   cd - > /dev/null
