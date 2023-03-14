@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 printf "this script has been replaced by backup.py! and for learning purpose only!" 1>&2
 exit

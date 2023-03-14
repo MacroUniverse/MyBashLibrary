@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 if (($# != 1)); then
   echo "error: must specify a dest path!" 1>&2

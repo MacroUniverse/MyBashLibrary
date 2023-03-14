@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 # usage: `source ./lib_prepend.sh <path>`
 # equivalent to:

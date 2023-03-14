@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 # usage: `source ./path_del.sh <env> <path>`
 # remove one <path> from environment variable <env> with the format `<path1>:<path2>:...:<path5>`

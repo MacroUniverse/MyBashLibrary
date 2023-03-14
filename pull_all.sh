@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 # pull all subdirectories from default remote
 
 for repo in */ ; do

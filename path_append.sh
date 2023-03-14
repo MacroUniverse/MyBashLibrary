@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 # usage: `source ./path_append.sh <env> <path>`
 # append one <path> to environment variable <env> with the format `<path1>:<path2>:...:<path5>`

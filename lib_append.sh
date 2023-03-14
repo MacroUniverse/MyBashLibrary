@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 # usage: `source ./lib_append.sh <path>`
 # equivalent to:
