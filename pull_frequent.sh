@@ -1,7 +1,7 @@
 #! /bin/bash
 # pull all subdirectories from default remote
 
-repos=littleshi.cn PhysWiki PhysWikiScan PhysWiki-backup user-notes
+repos="Notes Private SLISC FEDVR-TDSE Xiaoshi littleshi.cn PhysWiki PhysWikiScan PhysWiki-backup user-notes"
 
 for repo in ${repos} ; do
   repo=${repo%/}
