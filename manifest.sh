@@ -11,7 +11,7 @@ while IFS= read -r folder
 do
     # Add to the associative array
     manifest_folders["$folder"]=1
-done < manifest.txt
+done < ~/github/Notes/Files/MacroUniverse.txt
 
 # Print folders that do not exist
 for folder in "${!manifest_folders[@]}"; do
@@ -29,3 +29,4 @@ for dir in */ ; do
 done
 
 echo "done!"
+
