@@ -1,6 +1,6 @@
 #! /bin/bash
 group=$(stat -c '%G' .)
-echo group is $group
+echo group: $group
 chmod 2750 .
 chgrp $group -R .
 find . -mindepth 1 -type d -exec chmod 775 {} \;
