@@ -17,6 +17,8 @@ done < ~/github/Notes/Files/MacroUniverse.txt
 for folder in "${!manifest_folders[@]}"; do
     if [ ! -d "$folder" ]; then
         echo "Folder in manifest but does not exist: $folder"
+    else
+	echo "exist: $folder"
     fi
 done
 
@@ -28,5 +30,4 @@ for dir in */ ; do
     fi
 done
 
-echo "done!"
-
+printf "\ndone!\n"
