@@ -1,4 +1,3 @@
-# this is used on the server side
 while :
 do
     date;
