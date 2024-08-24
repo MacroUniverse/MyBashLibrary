@@ -4,7 +4,7 @@
 max_length=130
 
 # Find all files in the current directory and subdirectories
-find . -type f | while read -r file; do
+find . | while read -r file; do
     # Extract the directory, filename, and extension
     dir=$(dirname "$file")
     base=$(basename "$file")
