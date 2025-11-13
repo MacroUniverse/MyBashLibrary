@@ -1,7 +1,7 @@
 # 设置
 set -e
 BT_ROOT="/opt/Baltamatica"
-deb_file=(baltamatica_*.deb)
+deb_file=$(ls baltamatica_*.deb)
 license_file="/mnt/c/baltamatica/licenses/LICENSE"
 
 echo "=== 安装，需要 cd 到 deb 所在目录 ==="
@@ -11,7 +11,7 @@ if [ -d "$BT_ROOT" ]; then
 fi
 sudo apt update
 sudo apt purge baltamatica -y
-sudo apt install "./$deb_file"
+sudo apt install "./$deb_file" -y
 
 echo "=== 记录版本号 ==="
 cd "$BT_ROOT"
@@ -26,8 +26,8 @@ cp -r external/python/{python3.12.7,python3.12.7-original}
 
 echo "=== 隐藏工具箱（不需要隐藏插件，不会默认加载） ==="
 mkdir toolbox/hide
-mv toolbox/{*,hide} > /dev/null
-mv toolbox/{hide/CodeGeneration,hide}
+mv toolbox/{*,hide} > /dev/null 2>&1
+mv toolbox/hide/CodeGeneration toolbox
 
 echo "=== LICENSE ==="
 if [ -f "$license_file" ]; then

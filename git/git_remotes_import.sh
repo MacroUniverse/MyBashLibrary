@@ -29,13 +29,14 @@ if [ ! -f "$INPUT_FILE" ]; then
 fi
 
 # Process each line in the input file
-while read -r rel_path name url type; do
-    repo_path="$TARGET_DIR/$rel_path"
+while read -r dir_name name url type; do
+    repo_path="$TARGET_DIR/$dir_name"
     if [ -d "$repo_path" ]; then
         (
             cd "$repo_path" || exit
-            # Remove remote if it already exists
+            # Check if remote already exists
             if git remote get-url "$name" &>/dev/null; then
+                # Remove existing remote
                 git remote remove "$name"
             fi
             # Add the remote
@@ -44,10 +45,10 @@ while read -r rel_path name url type; do
             if [ "$type" = "(push)" ]; then
                 git remote set-url --push "$name" "$url"
             fi
-            echo "Configured remote '$name' in $rel_path"
+            echo "Configured remote '$name' in $dir_name"
         )
     else
-        echo "Warning: Repository $rel_path not found in $TARGET_DIR"
+        echo "Warning: Repository $dir_name not found in $TARGET_DIR"
     fi
 done < "$INPUT_FILE"
 

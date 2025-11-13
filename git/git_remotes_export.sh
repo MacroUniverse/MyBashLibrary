@@ -21,21 +21,29 @@ if [ ! -d "$TARGET_DIR" ]; then
     exit 1
 fi
 
-# Resolve absolute path for the output file
+# Resolve absolute paths
+TARGET_DIR=$(realpath "$TARGET_DIR")
 OUTPUT_FILE=$(realpath "$OUTPUT_FILE")
 
-# Find all Git repositories and record their remotes
-find "$TARGET_DIR" -type d -name ".git" -exec dirname {} \; | while read -r repo; do
-    (
-        cd "$repo" || exit
-        git remote -v | while read -r name url type; do
-            if [ -n "$name" ] && [ -n "$url" ]; then
-                # Get the relative path of the repo from the target directory
-                rel_path=$(realpath --relative-to="$TARGET_DIR" "$repo")
-                echo "$rel_path $name $url $type"
-            fi
-        done
-    )
+# Process each direct subdirectory
+for subdir in "$TARGET_DIR"/*/; do
+    # Remove trailing slash
+    subdir=${subdir%*/}
+    git_dir="$subdir/.git"
+    
+    # Check if it's a Git repository
+    if [ -d "$git_dir" ]; then
+        (
+            cd "$subdir" || exit
+            git remote -v | while read -r name url type; do
+                if [ -n "$name" ] && [ -n "$url" ]; then
+                    # Get just the directory name (not full path)
+                    dir_name=$(basename "$subdir")
+                    echo "$dir_name $name $url $type"
+                fi
+            done
+        )
+    fi
 done > "$OUTPUT_FILE"
 
 echo "Remotes recorded in $OUTPUT_FILE"
