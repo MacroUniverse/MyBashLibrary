@@ -1,6 +1,7 @@
 # mac 安装北太天元并自动记录版本和备份关键文件夹
 # 设置
 set -e
+set -x
 BT_ROOT="/Applications/Baltamatica.app/Contents"
 zip_file=$(ls baltamatica_*.zip)
 license_file="LICENSE"
@@ -26,7 +27,7 @@ cp -r external/python/{python3.12.7,python3.12.7-original}
 
 echo "=== 隐藏工具箱（不需要隐藏插件，不会默认加载） ==="
 mkdir toolbox/hide
-mv toolbox/{*,hide} > /dev/null 2>&1
+mv toolbox/{*,hide} &> /dev/null
 mv toolbox/hide/CodeGeneration toolbox
 
 echo "=== LICENSE ==="
